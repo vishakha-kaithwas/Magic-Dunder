@@ -1,0 +1,45 @@
+class Product:
+    count = 0
+    def __init__(self,name,price):
+        self.name = name 
+        self.price = price
+        Product.count += 1
+        self.quantity = Product.count
+      
+    def __add__(self,other):
+        return (self.price + other.price)
+    
+    def __eq__(self,other):
+        return (self.price == other.price)
+    
+    def __gt__(self,other):
+        return (self.price > other.price)
+    
+    def __str__(self):
+        return f"Name of the product: {self.name} | Price: {self.price}"
+
+
+class Electronic(Product):
+    def __init__(self,name,price,warranty_years):
+        Product.__init__(self,name,price)
+        self.warranty_years = warranty_years
+
+class Cloth(Product):
+    def __init__(self,name,price,size):
+        Product.__init__(self,name,price)
+        self.size = size
+
+    
+Laptop = Electronic("Laptop",60000,2)
+Skirt = Cloth("Skirt",8000,"M")
+Phone = Electronic("Phone",80000,2)
+
+print(Laptop)
+print(Skirt)
+print(Phone)
+
+print("\nTotal price of laptop + phone:", Laptop + Phone)
+print("Is laptop costlier than phone?", Laptop > Phone)
+print("Are phone and shirt same price?", Phone == Skirt)
+
+print("\nTotal products added:", Product.count)
